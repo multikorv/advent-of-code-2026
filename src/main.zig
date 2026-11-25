@@ -2,12 +2,13 @@ const std = @import("std");
 const Io = std.Io;
 
 const advent_of_code_2026 = @import("advent_of_code_2026");
+const rl = @import("raylib");
 
 pub fn main(init: std.process.Init) !void {
     // Prints to stderr, unbuffered, ignoring potential errors.
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
+    std.debug.print("Advent of your {s} are belong to us.\n", .{"codebase"});
 
-    // This is appropriate for anything that lives as long as the process.
+    //This is appropriate for anything that lives as long as the process.
     const arena: std.mem.Allocator = init.arena.allocator();
 
     // Accessing command line arguments:
@@ -29,6 +30,35 @@ pub fn main(init: std.process.Init) !void {
     try advent_of_code_2026.printAnotherMessage(stdout_writer);
 
     try stdout_writer.flush(); // Don't forget to flush!
+
+    // Raylib
+    //--------------------------------------------------------------------------------------
+    const screenWidth = 800;
+    const screenHeight = 450;
+
+    rl.initWindow(screenWidth, screenHeight, "Advent of code visualizer");
+    defer rl.closeWindow(); // Close window and OpenGL context
+
+    rl.setTargetFPS(60); // Set our game to run at 60 frames-per-second
+    //--------------------------------------------------------------------------------------
+
+    // Main game loop
+    while (!rl.windowShouldClose()) { // Detect window close button or ESC key
+        // Update
+        //----------------------------------------------------------------------------------
+        // TODO: Update your variables here
+        //----------------------------------------------------------------------------------
+
+        // Draw
+        //----------------------------------------------------------------------------------
+        rl.beginDrawing();
+        defer rl.endDrawing();
+
+        rl.clearBackground(.white);
+
+        rl.drawText("Advent of code 2026!", 190, 200, 20, .light_gray);
+        //----------------------------------------------------------------------------------
+    }
 }
 
 test "simple test" {
