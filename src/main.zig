@@ -30,7 +30,7 @@ pub fn main(init: std.process.Init) !void {
 
     try stdout_writer.flush(); 
 
-    solutions.Warmup.warmup();
+    try solutions.Warmup.warmup();
 }
 
 test "simple test" {
